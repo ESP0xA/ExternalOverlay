@@ -1,6 +1,6 @@
 // ExternalOverlay.cpp : Defines the entry point for the application.
 //
-
+#include <Dwmapi.h>
 #include "framework.h"
 #include "ExternalOverlay.h"
 #include "Paint.h"
@@ -42,7 +42,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
         return FALSE;
     }
     // Perform application initialization:
-    if (!InitInstance (hInstance, nCmdShow))
+    if (!InitInstance (hInstance, SW_SHOW))
     {
         return FALSE;
     }
@@ -108,7 +108,7 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
 {
    hInst = hInstance; // Store instance handle in our global variable
 
-   HWND overlayHWND = CreateWindowExW(WS_EX_TOPMOST | WS_EX_TRANSPARENT | WS_EX_LAYERED, overlayTitle, overlayTitle, WS_POPUP,
+   overlayHWND = CreateWindowExW(WS_EX_TOPMOST | WS_EX_TRANSPARENT | WS_EX_LAYERED, overlayTitle, overlayTitle, WS_POPUP,
        1, 1, width, height, nullptr, nullptr, hInstance, nullptr);
 
    if (!overlayHWND)

@@ -19,6 +19,16 @@ int Paint::init(HWND hWND) {
 
     HRESULT res = d3dObject->CreateDeviceEx(D3DADAPTER_DEFAULT, D3DDEVTYPE_HAL, hWND, D3DCREATE_HARDWARE_VERTEXPROCESSING, &d3dparams, 0, &d3dDevice);
 
+    /*
+    if (FAILED(res)) {
+        std::wstring ws(DXGetErrorString(res));
+        std::string str(ws.begin(), ws.end());
+        std::wstring ws2(DXGetErrorDescription(res));
+        std::string str2(ws2.begin(), ws2.end());
+        std::string error = "Error: " + str + " error description: " + str2;
+        exit(1);
+    } 
+    */
 
     D3DXCreateFont(d3dDevice, 50, 0, FW_BOLD, 1, false, DEFAULT_CHARSET, OUT_DEVICE_PRECIS, ANTIALIASED_QUALITY, DEFAULT_PITCH, "Comic Sans", &d3dFont);
 
@@ -28,9 +38,9 @@ int Paint::init(HWND hWND) {
 Paint::Paint() {};
 
 Paint::Paint(HWND hWnd, HWND targetWnd, int width, int height) {
-    this -> width = width;
-    this -> height = height;
-    this -> TargetHWND = targetWnd;
+    this->width = width;
+    this->height = height;
+    this->TargetHWND = targetWnd;
     init(hWnd);
 }
 
@@ -43,7 +53,7 @@ int Paint::render()
 
     if (TargetHWND == GetForegroundWindow())
     {
-        drawText((char*)"U got hacked broo", width / 10, height / 10, 255, 171, 0, 182);
+        drawText((char*)"Overlay test", width / 10, height / 10, 255, 171, 0, 182);
     }
 
     d3dDevice->EndScene();
